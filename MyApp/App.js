@@ -1,9 +1,13 @@
-// App.js
 import React from 'react';
-import BottomTabNavigator from './navigation/BottomTabNavigator';
+import Navigator from './Navigator';
+import { ThemeProvider } from './ThemeContext';
 
 const App = () => {
-  return <BottomTabNavigator />;
+  return (
+    <ThemeProvider>
+        <Navigator />
+    </ThemeProvider>
+  );
 };
 
-export default App;
+export default App;
