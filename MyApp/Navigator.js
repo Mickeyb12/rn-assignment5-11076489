@@ -5,7 +5,8 @@ import Home from './Home';
 import Settings from './Settings';
 import { Image } from 'react-native';
 import Statistics from './Statistics';
-import MyCards from './MyCard';
+import MyCards from './MyCards';
+
 
 
 const Tab = createBottomTabNavigator();
@@ -17,6 +18,7 @@ const StatisticsIcon = require('./assets/statictics.png');
 
 
 const Navigator = () => {
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -47,4 +49,4 @@ const Navigator = () => {
   );
 };
 
-export default Navigator;
+export default Navigator;
