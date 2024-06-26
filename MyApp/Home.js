@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import { ThemeContext } from './ThemeContext';
 import Profile from './assets/profile.png';
 import SearchIcon from './assets/search.png';
 import MasterCard from './assets/Card.png';
@@ -10,17 +11,19 @@ import TopupIcon from './assets/topUp.png';
 
 const { width: screenWidth } = Dimensions.get('window');
 
-export default function Home({ name }) {
+export default function Home() {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: theme.background }}>
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.profileContainer}>
             <Image source={Profile} style={styles.profilePicture} />
           </View>
           <View style={styles.welcomeTextContainer}>
-            <Text style={styles.welcomeText}>Welcome back,</Text>
-            <Text style={styles.userName}>{name}</Text>
+            <Text style={[styles.welcomeText, { color: theme.text }]}>Welcome back,</Text>
+            <Text style={[styles.userName, { color: theme.text }]}>Eric Atsu</Text>
           </View>
           <TouchableOpacity style={styles.searchButton}>
             <Image source={SearchIcon} style={styles.searchIcon} />
@@ -34,73 +37,73 @@ export default function Home({ name }) {
             <View style={styles.iconBackground}>
               <Image source={SentIcon} style={styles.icon} />
             </View>
-            <Text style={styles.iconText}>Sent</Text>
+            <Text style={[styles.iconText, { color: theme.text }]}>Sent</Text>
           </View>
           <View style={styles.iconContainer}>
             <View style={styles.iconBackground}>
               <Image source={ReceiveIcon} style={styles.icon} />
             </View>
-            <Text style={styles.iconText}>Receive</Text>
+            <Text style={[styles.iconText, { color: theme.text }]}>Receive</Text>
           </View>
           <View style={styles.iconContainer}>
             <View style={styles.iconBackground}>
               <Image source={LoanIcon} style={styles.icon} />
             </View>
-            <Text style={styles.iconText}>Loan</Text>
+            <Text style={[styles.iconText, { color: theme.text }]}>Loan</Text>
           </View>
           <View style={styles.iconContainer}>
             <View style={styles.iconBackground}>
               <Image source={TopupIcon} style={styles.icon} />
             </View>
-            <Text style={styles.iconText}>Topup</Text>
+            <Text style={[styles.iconText, { color: theme.text }]}>Topup</Text>
           </View>
         </View>
         <View style={styles.transactionTextContainer}>
-          <Text style={styles.transactionText}>Transaction</Text>
+          <Text style={[styles.transactionText, { color: theme.text }]}>Transaction</Text>
           <TouchableOpacity>
             <Text style={[styles.seeAllText, { color: 'blue' }]}>See All</Text>
           </TouchableOpacity>
         </View>
         {/* List items */}
         <View style={styles.sectionContainer}>
-          <View style={styles.rowContainer}>
+          <View style={[styles.rowContainer, { backgroundColor: theme.rowBackground }]}>
             <View style={styles.listItem}>
               <Image source={require('./assets/apple.png')} style={styles.image} />
               <View style={styles.itemTextContainer}>
-                <Text style={styles.itemText}>Apple Store</Text>
-                <Text style={styles.subText}>Entertainment</Text>
+                <Text style={[styles.itemText, { color: theme.text }]}>Apple Store</Text>
+                <Text style={[styles.subText, { color: theme.text }]}>Entertainment</Text>
               </View>
-              <Text style={styles.amountText}>-$5.99</Text>
+              <Text style={[styles.amountText, { color: theme.text }]}>-$5.99</Text>
             </View>
           </View>
-          <View style={styles.rowContainer}>
+          <View style={[styles.rowContainer, { backgroundColor: theme.rowBackground }]}>
             <View style={styles.listItem}>
               <Image source={require('./assets/spotify.png')} style={styles.image} />
               <View style={styles.itemTextContainer}>
-                <Text style={styles.itemText}>Spotify</Text>
-                <Text style={styles.subText}>Music</Text>
+                <Text style={[styles.itemText, { color: theme.text }]}>Spotify</Text>
+                <Text style={[styles.subText, { color: theme.text }]}>Music</Text>
               </View>
-              <Text style={styles.amountText}>-$9.99</Text>
+              <Text style={[styles.amountText, { color: theme.text }]}>-$9.99</Text>
             </View>
           </View>
-          <View style={styles.rowContainer}>
+          <View style={[styles.rowContainer, { backgroundColor: theme.rowBackground }]}>
             <View style={styles.listItem}>
               <Image source={require('./assets/moneyTransfer.png')} style={styles.image} />
               <View style={styles.itemTextContainer}>
-                <Text style={[styles.itemText, { color: 'black' }]}>Money Transfer</Text>
-                <Text style={styles.subText}>Transfer</Text>
+                <Text style={[styles.itemText, { color: theme.text }]}>Money Transfer</Text>
+                <Text style={[styles.subText, { color: theme.text }]}>Transfer</Text>
               </View>
-              <Text style={[styles.amountText, { color: 'blue' }]}>$50.00</Text>
+              <Text style={[styles.amountText, { color: theme.text }]}>$50.00</Text>
             </View>
           </View>
-          <View style={styles.rowContainer}>
+          <View style={[styles.rowContainer, { backgroundColor: theme.rowBackground }]}>
             <View style={styles.listItem}>
               <Image source={require('./assets/grocery.png')} style={styles.image} />
               <View style={styles.itemTextContainer}>
-                <Text style={styles.itemText}>Grocery</Text>
-                <Text style={styles.subText}>Food</Text>
+                <Text style={[styles.itemText, { color: theme.text }]}>Grocery</Text>
+                <Text style={[styles.subText, { color: theme.text }]}>Food</Text>
               </View>
-              <Text style={styles.amountText}>-$25.00</Text>
+              <Text style={[styles.amountText, { color: theme.text }]}>-$25.00</Text>
             </View>
           </View>
         </View>
@@ -114,7 +117,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 40,
     paddingHorizontal: 10,
-    backgroundColor: '#fff',
   },
   header: {
     flexDirection: 'row',
@@ -142,7 +144,6 @@ const styles = StyleSheet.create({
   userName: {
     fontWeight: 'bold',
     fontSize: 22,
-    color: 'black',
   },
   searchButton: {
     width: 40,
@@ -186,6 +187,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
     paddingHorizontal: 10,
+    borderRadius: 25,
+    paddingVertical: 10,
   },
   listItem: {
     flexDirection: 'row',
@@ -194,7 +197,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 10,
     width: '100%',
-    backgroundColor: '#fff',
   },
   image: {
     width: 35,
@@ -210,15 +212,12 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: 'black',
   },
   subText: {
     fontSize: 12,
-    color: 'gray',
   },
   amountText: {
     fontSize: 17,
-    color: 'black',
     textAlign: 'right',
     fontWeight: 'bold',
   },
@@ -244,7 +243,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontSize: 14,
     textAlign: 'center',
-    color: 'black',
   },
   transactionTextContainer: {
     flexDirection: 'row',
@@ -256,7 +254,6 @@ const styles = StyleSheet.create({
   transactionText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'black', 
   },
   seeAllText: {
     fontSize: 17,
